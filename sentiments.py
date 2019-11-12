@@ -8,8 +8,9 @@ nltk.downloader.download('vader_lexicon')
 # sum1 = TextBlob(text1)
 # sent1 = sum1.sentiment.polarity
 # print(sent1)
+
 sid = SentimentIntensityAnalyzer()
-data = pd.read_csv("scraper/demo.csv",header=None,error_bad_lines=False,quotechar=None, quoting=3)
+data = pd.read_csv("scraper/Nike.csv",header=None,error_bad_lines=False,quotechar=None, quoting=3)
 # print(data)
 
 texts = data[0]
