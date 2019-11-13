@@ -8,9 +8,9 @@ import plotly.express as px
 
 nltk.downloader.download('vader_lexicon')
 
-keyword = ""
+keyword = "Iphone"
 filePath = "scraper/" + keyword + ".csv"
-filePathRecent = "scraper/" + keyword + "2.csv"
+filePathRecent = "scraper/" + keyword + "Recent.csv"
 
 def getInitSentiments(txt):
     global positiveI
@@ -27,12 +27,17 @@ def getInitSentiments(txt):
                 negativeI += 1
             if sentiment[k] == 0.0:
                 neutralI += 1
+    total = positiveI + negativeI + neutralI
+    positiveI = (positiveI / total) * 100
+    negativeI = (negativeI / total) * 100
+    neutralI = (neutralI / total) * 100
 
 def getLastSentiments(txt):
     global positiveR
+    total = 0
     global negativeR
     global neutralR
-    print(len(txt))
+    # print(len(txt))
     for t in txt:
         #     print(t)
         sentiment = sid.polarity_scores(t)
@@ -43,14 +48,19 @@ def getLastSentiments(txt):
                 negativeR += 1
             if sentiment[k] == 0.0:
                 neutralR += 1
+    total = positiveR + negativeR + neutralR
+    positiveR = (positiveR / total) * 100
+    negativeR = (negativeR / total) * 100
+    neutralR = (neutralR / total ) * 100
+
 
 # def makeGraph():
 
 
 ####### MAIN FUNCTION ##########
 sid = SentimentIntensityAnalyzer()
-data = pd.read_csv("scraper/Dance.csv",header=None,error_bad_lines=False,quotechar=None, quoting=3)
-dataRecent = pd.read_csv("scraper/Dance2.csv",header=None,error_bad_lines=False,quotechar=None, quoting=3)
+data = pd.read_csv(filePath,header=None,error_bad_lines=False,quotechar=None, quoting=3)
+dataRecent = pd.read_csv(filePathRecent,header=None,error_bad_lines=False,quotechar=None, quoting=3)
 texts = data[0]
 textsRecent = dataRecent[0]
 positiveI = 0
@@ -70,9 +80,9 @@ neutral[0] = neutralI
 positive[1] = positiveR
 negative[1] = negativeR
 neutral[1] = neutralR
-# print(negative)
-# print(neutral)
-# print(positive)
+print(negative)
+print(neutral)
+print(positive)
 
 
 
@@ -86,4 +96,4 @@ fig.add_trace(go.Scatter(x=x, y=neutral,
                     mode='markers+lines', name='NEUTRAL'))
 
 fig.show()
-
+#
