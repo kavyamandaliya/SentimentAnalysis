@@ -8,7 +8,7 @@ import plotly.express as px
 
 nltk.downloader.download('vader_lexicon')
 
-keyword = "Iphone"
+keyword = "Dominos"
 filePath = "scraper/" + keyword + ".csv"
 filePathRecent = "scraper/" + keyword + "Recent.csv"
 
@@ -96,4 +96,9 @@ fig.add_trace(go.Scatter(x=x, y=neutral,
                     mode='markers+lines', name='NEUTRAL'))
 
 fig.show()
-#
+
+#architecture  slow diagram
+#how train machine
+#true postive false postive
+#tp and fp implement - false positive decrease it and increase the true positives
+#3rd dec - ppt
