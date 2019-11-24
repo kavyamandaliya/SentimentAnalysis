@@ -17,8 +17,8 @@ def getInitData(time, fileName):
     tweets = twt.search(keyword, count=500, exclude_replies=True,
                         include_retweets=False)
     result = []
-    for tweet in tweets:
-        result.append(tweet['full_text'])
+    # for tweet in tweets:
+    #     result.append(tweet['full_text'])
     ##reddit
     comments = rdt.search(keyword, count=500, order="new", page='',
                           result_type="link", time_period=time)
